@@ -1,0 +1,24 @@
+<div ng-controller="ArticleController as ctrl">
+<h2>Available Articles</h2>
+    <div class="form-group">
+        <label articlefilter="usr">Filter:</label>
+        <input type="text" ng-model="articleFilter.Title" class="form-control" id="articlefilter">
+    </div>
+<br/><br/>
+<table class="table table-striped">
+    <tr>
+        <th>Author</th>
+        <th ng-click="ctrl.doSort()">Title</th>
+        <th>Genre</th>
+        <th>Published</th>
+    </tr>
+    <tr ng-repeat="article in ctrl.articles | filter:articleFilter | orderBy:ctrl.sortBy:ctrl.reverse">
+        <td>{{article.author | uppercase}}</td>
+        <td>{{article.title | lowercase}}</td>
+        <td>{{article.genre}}</td>
+        <td>{{article.yearPublished}}</td>
+    </tr>
+</table>
+
+<span>Total articles: {{ctrl.articles.length}}</span>
+</div>
